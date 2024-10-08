@@ -1,0 +1,31 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/nguyenxuandiep/Quiz-Battle.git"
+  },
+  "keywords": [
+    "reactjs",
+    "nodejs",
+    "quizbattle"
+  ],
+  "author": "diepnx",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/nguyenxuandiep/Quiz-Battle/issues"
+  },
+  "homepage": "https://github.com/nguyenxuandiep/Quiz-Battle#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.21.0",
+    "nodemon": "^3.1.7",
+    "socket.io": "^4.8.0"
+  }
+}
