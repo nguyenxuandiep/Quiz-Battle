@@ -1,6 +1,9 @@
-import "./App.css";
 import io from "socket.io-client";
-import { useEffect, useState } from "react";
+import { Fragment, useEffect, useState } from "react";
+import axios, { isCancel, AxiosError } from "axios";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { publicRoutes } from "./routes";
+import { DefaultLayout } from "./components/Layout/";
 const socket = io.connect("http://localhost:3001");
 
 function App() {
@@ -25,27 +28,56 @@ function App() {
       setMessageReceived(data.message);
     });
   }, [socket]);
-  return (
-    <div className="App">
-      <h1>HOME PAGE</h1>
-      <input
-        placeholder="Room Number..."
-        onChange={(e) => {
-          setRoom(e.target.value);
-        }}
-      />
 
-      <button onClick={joinRoom}>Join Room</button>
-      <input
-        placeholder="Message..."
-        onChange={(e) => {
-          setMessage(e.target.value);
-        }}
-      />
-      <button onClick={sendMessage}>Send Message</button>
-      <h1>Message:</h1>
-      {messageReceived}
-    </div>
+  return (
+    <Router>
+      <div className="App">
+        <Routes>
+          {publicRoutes.map((route, index) => {
+            // Nếu k có layout đc setting thì mặc định  là  DefaultLayout lưu vào biến Layout
+            const Page = route.component;
+            let Layout = DefaultLayout;
+
+            if (route.layout) {
+              Layout = route.layout;
+            } else if (route.layout === null) {
+              Layout = Fragment;
+            }
+
+            return (
+              <Route
+                key={index}
+                path={route.path}
+                element={
+                  <Layout>
+                    {/* Page này trở thành children nên sẽ đc đưa vào DefaultLayout {children} */}
+                    <Page />
+                  </Layout>
+                }
+              />
+            );
+          })}
+        </Routes>
+        <h1>React App</h1>
+        <input
+          placeholder="Room Number..."
+          onChange={(e) => {
+            setRoom(e.target.value);
+          }}
+        />
+
+        <button onClick={joinRoom}>Join Room</button>
+        <input
+          placeholder="Message..."
+          onChange={(e) => {
+            setMessage(e.target.value);
+          }}
+        />
+        <button onClick={sendMessage}>Send Message</button>
+        <h1>Message:</h1>
+        {messageReceived}
+      </div>
+    </Router>
   );
 }
 
