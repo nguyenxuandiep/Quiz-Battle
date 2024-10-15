@@ -58,7 +58,7 @@ function App() {
             );
           })}
         </Routes>
-        <h1>React App</h1>
+        {/* <h1>React App</h1>
         <input
           placeholder="Room Number..."
           onChange={(e) => {
@@ -75,7 +75,7 @@ function App() {
         />
         <button onClick={sendMessage}>Send Message</button>
         <h1>Message:</h1>
-        {messageReceived}
+        {messageReceived} */}
       </div>
     </Router>
   );
