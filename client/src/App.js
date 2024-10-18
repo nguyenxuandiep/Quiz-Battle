@@ -1,40 +1,42 @@
 import io from "socket.io-client";
-import { Fragment, useEffect, useState } from "react";
-import axios, { isCancel, AxiosError } from "axios";
+import { Fragment, useEffect } from "react";
+import { useDispatch } from 'react-redux';
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { publicRoutes } from "./routes";
+import { createSocket } from './actions/socket';
 import { DefaultLayout } from "./components/Layout/";
-const socket = io.connect("http://localhost:3001");
+
 
 function App() {
-  // Room State
-  const [room, setRoom] = useState("");
-
-  //Messaes States
-  const [message, setMessage] = useState("");
-  const [messageReceived, setMessageReceived] = useState("");
-
-  const joinRoom = () => {
-    if (room !== "") {
-      socket.emit("join_room", room);
-    }
-  };
-  const sendMessage = () => {
-    socket.emit("send_message", { message, room });
-  };
+  const dispatch = useDispatch();
 
   useEffect(() => {
-    socket.on("receive_message", (data) => {
-      setMessageReceived(data.message);
+    const socket = io("http://localhost:3001"); // Đảm bảo sử dụng port đúng
+
+    console.log("Socket created:", socket);
+    dispatch(createSocket(socket)); // Gửi socket vào Redux store
+
+    // Lắng nghe sự kiện connect
+    socket.on("connect", () => {
+      console.log("Connected to socket server:", socket.id);
     });
-  }, [socket]);
+
+    // Lắng nghe sự kiện disconnect
+    socket.on("disconnect", () => {
+      console.log("Disconnected from socket server");
+    });
+
+    return () => {
+      socket.disconnect(); // Ngắt kết nối khi component bị unmount
+    };
+  }, [dispatch]);
 
   return (
     <Router>
       <div className="App">
         <Routes>
           {publicRoutes.map((route, index) => {
-            // Nếu k có layout đc setting thì mặc định  là  DefaultLayout lưu vào biến Layout
+            // Nếu không có layout được setting thì mặc định là DefaultLayout
             const Page = route.component;
             let Layout = DefaultLayout;
 
@@ -50,7 +52,7 @@ function App() {
                 path={route.path}
                 element={
                   <Layout>
-                    {/* Page này trở thành children nên sẽ đc đưa vào DefaultLayout {children} */}
+                    {/* Page này trở thành children nên sẽ được đưa vào DefaultLayout {children} */}
                     <Page />
                   </Layout>
                 }
@@ -58,24 +60,6 @@ function App() {
             );
           })}
         </Routes>
-        {/* <h1>React App</h1>
-        <input
-          placeholder="Room Number..."
-          onChange={(e) => {
-            setRoom(e.target.value);
-          }}
-        />
-
-        <button onClick={joinRoom}>Join Room</button>
-        <input
-          placeholder="Message..."
-          onChange={(e) => {
-            setMessage(e.target.value);
-          }}
-        />
-        <button onClick={sendMessage}>Send Message</button>
-        <h1>Message:</h1>
-        {messageReceived} */}
       </div>
     </Router>
   );

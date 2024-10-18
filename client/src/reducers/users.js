@@ -1,21 +1,20 @@
-// src/reducers/index.js
-import { combineReducers } from 'redux';
+import { FETCH_ALL_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from "../components/constants/actionTypes";
 
-// Ví dụ một reducer đơn giản
-const exampleReducer = (state = { count: 0 }, action) => {
+const reducer = (users = [], action) => {
   switch (action.type) {
-    case 'INCREMENT':
-      return { ...state, count: state.count + 1 };
-    case 'DECREMENT':
-      return { ...state, count: state.count - 1 };
+    case FETCH_ALL_USERS:
+      return action.payload;
+    case UPDATE_USER:
+      return users.map((user) =>
+        user._id === action.payload._id ? action.payload : user
+      );
+    case CREATE_USER:
+      return [...users, action.payload];
+    case DELETE_USER:
+      return users.filter(user => user._id !== action.payload)
     default:
-      return state;
+      return users;
   }
 };
 
-// Kết hợp các reducer lại nếu có nhiều reducer
-const rootReducer = combineReducers({
-  example: exampleReducer,
-});
-
-export default rootReducer;
+export default reducer;

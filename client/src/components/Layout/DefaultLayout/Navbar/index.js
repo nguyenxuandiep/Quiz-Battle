@@ -18,15 +18,6 @@ function Navbar() {
   const navigate = useNavigate();
   const socket = useSelector((state) => state.socket?.socket); // Thêm dấu ? để tránh lỗi undefined
 
-  // Khởi tạo socket nếu chưa có
-  useEffect(() => {
-    if (!socket) {
-      const newSocket = io("http://localhost:5000"); // Khởi tạo socket
-      console.log("Socket created:", newSocket);
-      dispatch(createSocket(newSocket)); // Gửi socket vào Redux store
-    }
-  }, [socket, dispatch]);
-
   const logout = () => {
     dispatch({ type: actionType.LOGOUT });
     navigate("/auth");

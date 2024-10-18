@@ -1,5 +1,5 @@
 import * as api from "../api"
-import { CREATE_PLAYER_RESULT, FETCH_PLAYER_RESULT, ADD_ANSWER } from "../constants/actionTypes"
+import { CREATE_PLAYER_RESULT, FETCH_PLAYER_RESULT, ADD_ANSWER } from "../components/constants/actionTypes"
 
 export const createPlayerResult = (playerResult) => async (dispatch) => {
   try {

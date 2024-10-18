@@ -12,7 +12,7 @@ import {
   START_LOADING,
   END_LOADING,
   COMMENT_QUIZ
-} from "../constants/actionTypes"
+} from "../components/constants/actionTypes"
 
 export const getQuizes = () => async (dispatch) => {
   try {

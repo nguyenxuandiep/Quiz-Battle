@@ -1,19 +1,86 @@
-
-:root {
-
-}
+:root {}
 
 * {
     box-sizing: border-box;
+    margin    : 0;
+    padding   : 0;
 }
 
-html {
-    font-size: 62.5%;
-}
+
 
 body {
     font-family: 'Roboto', sans-serif;
-    font-size: 1.6rem;;
-    line-height: 1.5;
+    font-size  : 1.6rem;
+    ;
+    line-height   : 1.5;
     text-rendering: optimizeSpeed;
+    padding-top   : 6vh;
+    min-height    : 100vh;
+    display       : flex;
+    flex-direction: column;
+
+    -webkit-font-smoothing : antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+// App
+
+.App {
+    text-align: center;
+}
+
+.App-logo {
+    height        : 40vmin;
+    pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+    .App-logo {
+        animation: App-logo-spin infinite 20s linear;
+    }
+}
+
+.App-header {
+    background-color: #282c34;
+    min-height      : 100vh;
+    display         : flex;
+    flex-direction  : column;
+    align-items     : center;
+    justify-content : center;
+    font-size       : calc(10px + 2vmin);
+    color           : white;
+}
+
+.App-link {
+    color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+    }
+}
+
+// App.module.scss
+
+.appBar {
+    border-radius  : 15px;
+    margin         : 30px 0;
+    display        : flex;
+    flex-direction : row;
+    justify-content: center;
+    align-items    : center;
+}
+
+.heading {
+    color: rgba(0, 183, 255, 1);
+    /* Màu sắc giống như trong makeStyles */
+}
+
+.image {
+    margin-left: 15px;
 }

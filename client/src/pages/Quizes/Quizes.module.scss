@@ -1,0 +1,28 @@
+.quizes-list {
+  margin: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* styles.scss */
+.appBarSearch {
+  border-radius: 4px;
+  margin-bottom: 1rem;
+  display: flex;
+  padding: 16px;
+  width: 75%;
+}
+
+.pagination {
+  border-radius: 4px;
+  margin-top: 1rem;
+  padding: 16px;
+}
+
+.gridContainer {
+  @media (max-width: 600px) { /* Thay đổi điểm breakpoints */
+    flex-direction: column-reverse;
+  }
+}

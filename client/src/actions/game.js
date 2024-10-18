@@ -3,7 +3,7 @@ import {
   CREATE_GAME,
   FETCH_GAME,
   ADD_PLAYER
-} from "../constants/actionTypes"
+} from "../components/constants/actionTypes"
 
 export const createGame = (gameData, history) => async (dispatch) => {
   try {

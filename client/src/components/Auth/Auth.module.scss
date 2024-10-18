@@ -1,0 +1,34 @@
+// Auth.module.scss
+
+.paper {
+    margin-top    : 8rem;
+    
+    margin-bottom : 8rem;
+    display       : flex;
+    flex-direction: column;
+    align-items   : center;
+    padding       : 2rem;
+    
+}
+
+.root {
+    .MuiTextField-root {
+        margin: 1rem;
+       
+    }
+}
+
+.avatar {
+    margin          : 1rem;
+    
+    background-color: var(--secondary-main);
+}
+
+.form {
+    width     : 100%;
+    margin-top: 3rem;
+}
+
+.submit {
+    margin: 3rem 0 2rem;
+}

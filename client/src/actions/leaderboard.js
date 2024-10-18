@@ -5,7 +5,7 @@ import {
   FETCH_LEADERBOARD,
   UPDATE_QUESTION_LEADERBOARD,
   UPDATE_CURRENT_LEADERBOARD,
-} from "../constants/actionTypes"
+} from "../components/constants/actionTypes";
 
 export const createLeaderboard = (leaderboardData) => async (dispatch) => {
   try {

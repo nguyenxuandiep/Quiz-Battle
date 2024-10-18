@@ -1,5 +1,5 @@
 import * as api from "../api";
-import { FETCH_ALL_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from "../constants/actionTypes";
+import { FETCH_ALL_USERS, CREATE_USER, UPDATE_USER, DELETE_USER } from "../components/constants/actionTypes";
 
 export const getUsers = () => async (dispatch) => {
   try {

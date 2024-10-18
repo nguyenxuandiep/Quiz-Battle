@@ -1,0 +1,49 @@
+.media {
+  border-radius: 20px;
+  object-fit: cover;
+  width: 100%;
+  max-height: 400px;
+}
+
+.card {
+  display: flex;
+  width: 100%;
+
+  @media (max-width: 600px) {
+    flex-wrap: wrap;
+    flex-direction: column;
+  }
+}
+
+.section {
+  border-radius: 20px;
+  margin: 10px;
+  flex: 1;
+}
+
+.imageSection {
+  margin-left: 20px;
+  width: 50%;
+
+  @media (max-width: 600px) {
+    margin-left: 0;
+  }
+}
+
+.recommendedQuizes {
+  display: flex;
+  flex-wrap: wrap;
+
+  @media (max-width: 600px) {
+    flex-direction: column;
+  }
+}
+
+.loadingPaper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  border-radius: 15px;
+  height: 39vh;
+}
