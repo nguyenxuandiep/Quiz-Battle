@@ -14,7 +14,7 @@ function MyQuizes() {
   const navigate = useNavigate();
 
   // Lấy danh sách quizes từ Redux store
-  //const { quizes } = useSelector((state) => state.quiz);
+  const { quizes } = useSelector((state) => state.quiz);
 
   const [quizData, setQuizData] = useState({
     name: "",
@@ -100,9 +100,9 @@ function MyQuizes() {
           </button>
         </div>
       </div>
-      {/* {quizes.map((quiz) => (
+      {quizes.map((quiz) => (
         <MyQuiz key={quiz._id} quiz={quiz} />
-      ))} */}
+      ))}
     </div>
   );
 }

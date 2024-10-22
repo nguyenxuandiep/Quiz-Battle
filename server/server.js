@@ -48,7 +48,7 @@ const server = http.createServer(app);
 // Khởi tạo Socket.IO
 const io = new Server(server, {
   cors: {
-    origin: "*", // Cho phép tất cả các nguồn kết nối (hoặc thay thế bằng frontend domain)
+    origin: 'http://localhost:3000', 
     methods: ["GET", "POST"]
   }
 });
